@@ -1,13 +1,14 @@
-const express = require('express');
-const { nanoid } = require('nanoid');
-const URL = require('../models/url');
+import express from 'express';
+import { nanoid } from 'nanoid';
+import URL from '../models/url.js';
+import validator from 'validator';
 
 const router = express.Router();
 
 // POST /shorten - Create a short URL
 router.post('/shorten', async (req, res) => {
     const { longUrl } = req.body;
-    if (!longUrl) return res.status(400).json({ error: 'URL is required' });
+    if (!longUrl || !validator.isURL(longUrl)) return res.status(400).json({ error: 'Invalid URL format' });
 
     const id = nanoid(6); // Generate a short code (6 characters)
     try {
@@ -30,4 +31,4 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

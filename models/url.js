@@ -1,4 +1,5 @@
-const { Sequelize, DataTypes } = require('sequelize');
+import { Sequelize, DataTypes } from 'sequelize';
+
 const sequelize = new Sequelize({
     dialect: 'sqlite',
     storage: './db/database.sqlite',
@@ -19,4 +20,4 @@ const URL = sequelize.define('URL', {
     await sequelize.sync();
 })();
 
-module.exports = URL;
+export default URL;
