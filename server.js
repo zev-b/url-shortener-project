@@ -9,7 +9,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`;
+// const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -27,5 +27,5 @@ app.use(limiter);
 app.use('/', urlRoutes);
 
 app.listen(PORT, () => {
-    console.log(`Server is running on ${BASE_URL}`);
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
